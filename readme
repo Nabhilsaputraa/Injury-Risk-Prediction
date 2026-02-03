@@ -1,0 +1,59 @@
+██╗███╗   ██╗███████╗██████╗  █████╗ ███╗   ██╗████████╗
+██║████╗  ██║██╔════╝██╔══██╗██╔══██╗████╗  ██║╚══██╔══╝
+██║██╔██╗ ██║███████╗██████╔╝███████║██╔██╗ ██║   ██║   
+██║██║╚██╗██║╚════██║██╔═══╝ ██╔══██║██║╚██╗██║   ██║   
+██║██║ ╚████║███████║██║     ██║  ██║██║ ╚████║   ██║   
+╚═╝╚═╝  ╚═══╝╚══════╝╚═╝     ╚═╝  ╚═╝╚═╝  ╚═══╝   ╚═╝   
+
+
+>>> Injury Risk Prediction <<<
+Proyek ini bertujuan untuk membangun model Machine Learning yang dapat memprediksi risiko cedera atlet dalam 7–14 hari ke depan berdasarkan beban latihan, kondisi fisiologis, dan faktor pemulihan.
+
+Model dirancang sebagai early warning system untuk membantu pelatih dan atlet:
+- Menghindari overtraining
+- Mengoptimalkan beban latihan
+- Mengurangi risiko cedera jangka pendek
+
+Pada tahap saat ini, model dikembangkan dan diuji menggunakan synthetic (dummy) data sebagai proof of concept.
+
+>>> Tujuan Model 
+-------------------------------------------------------------------------------
+Model dibuat untuk
+- Memprediksi risiko cedera 7–14 hari ke depan
+- Mengidentifikasi atlet dengan risiko tinggi lebih awal
+- Menjadi dasar pengambilan keputusan latihan dan recovery
+
+>>> Output yang di hasilkan
+-------------------------------------------------------------------------------
+Model menghasilkan beberapa output utama:
++ Resiko 
+|- Rendah
+|- Sedang
+|- Tinggi
++ Alert Overtraining
++ Insight fitur paling berpengaruh
+
+>>> Struktur data yang dibutuhkan
+-------------------------------------------------------------------------------
+weekly_volume   = Total durasi/jarak latihan
+training_load   = Volume × intensitas
+acute_load      = Beban 7 hari
+chronic_load	= Beban 28 hari
+acwr	        = Acute : Chronic Ratio
+avg_hr	        = Rata-rata denyut jantung
+hrv	            = Heart Rate Variability
+rpe	            = Skala kelelahan
+sleep_hours	    = Jam tidur
+injury_history	= Pernah cedera (0/1)
+
+>>> Insight Fitur Paling Berpengaruh
+-------------------------------------------------------------------------------
+Menggunakan koefisien model (Logistic Regression) untuk:
+- Mengetahui fitur yang paling berkontribusi terhadap risiko cedera
+- Memberikan interpretasi yang mudah dipahami pelatih/atlet
+
+>>> Hasil Sementara
+-------------------------------------------------------------------------------
+Karena dataset asli memiliki hasil performa yang kurang, maka disimpulkan bawa kita
+akan menambahkan synthetic data dengan pola yang jelas. Sehingga model saat ini belum merepresentasikan kondisi dunia nyata. Model ini masih berada pada tahapan proof of concept. 
+
