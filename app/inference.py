@@ -1,8 +1,14 @@
-import joblib
 import pandas as pd
+import joblib
+import os
 
-proprocessor = joblib.load("artifacts/proprocessor.joblib")
-model = joblib.load("artifacts/random_forest.joblib")
+BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
+
+MODEL_PATH = os.path.join(BASE_DIR, "artifacts", "random_forest.joblib")
+PREPROCESSOR_PATH = os.path.join(BASE_DIR, "artifacts", "preprocessor.joblib")
+
+model = joblib.load(MODEL_PATH)
+proprocessor = joblib.load(PREPROCESSOR_PATH)
 
 def risk_category(prob):
     if prob < 0.4:
