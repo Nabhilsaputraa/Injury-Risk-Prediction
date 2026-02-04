@@ -2,9 +2,7 @@ import streamlit as st
 import requests
 import pandas as pd
 
-# ========================
-# PAGE CONFIG
-# ========================
+#! PAGE CONFIG
 st.set_page_config(
     page_title="Injury Risk Prediction",
     layout="centered"
@@ -16,9 +14,7 @@ st.caption(
     "dalam jangka pendek berdasarkan beban latihan & pemulihan"
 )
 
-# ========================
-# ATHLETE PROFILE
-# ========================
+#! ATHLETE PROFILE
 st.subheader("👤 Athlete Profile")
 
 gender = st.selectbox(
@@ -66,9 +62,7 @@ stress = st.slider(
          "Stres tinggi dapat menghambat pemulihan dan meningkatkan risiko cedera."
 )
 
-# ========================
-# TRAINING LOAD
-# ========================
+#! TRAINING LOAD
 st.subheader("🏋️ Training Load")
 
 freq = st.slider(
@@ -92,9 +86,7 @@ intensity = st.slider(
          "1 = sangat ringan, 10 = sangat berat."
 )
 
-# ========================
-# RECOVERY
-# ========================
+#! RECOVERY
 st.subheader("🛌 Recovery")
 
 sleep = st.slider(
@@ -118,9 +110,7 @@ warmup = st.slider(
          "Pemanasan membantu mengurangi risiko cedera otot & sendi."
 )
 
-# ========================
-# BIOMECHANICS
-# ========================
+#! BIOMECHANICS
 st.subheader("⚖️ Biomechanics")
 
 muscle_asym = st.slider(
@@ -137,9 +127,7 @@ flexibility = st.slider(
          "Fleksibilitas rendah meningkatkan risiko cedera otot."
 )
 
-# ========================
-# DATA PAYLOAD
-# ========================
+#! DATA PAYLOAD
 payload = {
     "Gender": gender,
     "Age": age,
@@ -158,9 +146,7 @@ payload = {
     "Flexibility_Score": flexibility
 }
 
-# ========================
-# PREDICTION
-# ========================
+#! PREDICTION
 if st.button("🔍 Predict Injury Risk"):
     with st.spinner("Analyzing athlete injury risk..."):
         response = requests.post(
@@ -171,9 +157,9 @@ if st.button("🔍 Predict Injury Risk"):
 
     st.divider()
 
-    # ========================
+
     # RESULT
-    # ========================
+
     if res["risk_level"] == "High":
         st.error("🔴 HIGH INJURY RISK")
     elif res["risk_level"] == "Medium":
@@ -186,9 +172,9 @@ if st.button("🔍 Predict Injury Risk"):
         value=f"{res['confidence']*100:.1f}%"
     )
 
-    # ========================
+
     # GRAPH: RISK FACTORS
-    # ========================
+
     st.subheader("🧠 Risk Factor Profile")
 
     risk_df = pd.DataFrame({
@@ -210,9 +196,9 @@ if st.button("🔍 Predict Injury Risk"):
 
     st.line_chart(risk_df.set_index("Factor"))
 
-    # ========================
+
     # WARNINGS
-    # ========================
+
     st.subheader("🤖 AI Sports Injury Risk Consultant")
 
     st.markdown("Berikut adalah interpretasi risiko cedera **berdasarkan data yang Anda masukkan**:")
