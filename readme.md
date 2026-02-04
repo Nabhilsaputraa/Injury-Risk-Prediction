@@ -40,22 +40,49 @@ The model produces the following outputs:
 All outputs are visualized through an interactive **Streamlit dashboard**.
 
 ---
-
 ## 📊 Features Used
-The model utilizes the following features:
+Model ini menggunakan kombinasi **fitur mentah (raw features)** dari dataset asli dan **fitur turunan (feature engineering)** yang dihitung selama preprocessing.
+
+### 🔹 Raw Features (Input Dataset)
+Fitur-fitur berikut diambil langsung dari dataset Kaggle dan digunakan sebagai input model:
 
 | Feature | Description |
 |------|------------|
-| `weekly_volume` | Total weekly training volume (time or distance) |
-| `training_load` | Training load (volume × intensity) |
-| `acute_load` | 7-day training load |
-| `chronic_load` | 28-day training load |
-| `acwr` | Acute : Chronic Workload Ratio |
-| `avg_hr` | Average heart rate |
-| `hrv` | Heart Rate Variability |
-| `rpe` | Rating of Perceived Exertion |
-| `sleep_hours` | Average sleep duration |
-| `injury_history` | Previous injury history (0 = No, 1 = Yes) |
+| `Gender` | Jenis kelamin atlet (Male / Female) |
+| `Age` | Usia atlet (tahun) |
+| `Height_cm` | Tinggi badan atlet (cm) |
+| `Weight_kg` | Berat badan atlet (kg) |
+| `BMI` | Body Mass Index |
+| `Training_Frequency` | Jumlah sesi latihan per minggu |
+| `Training_Duration` | Durasi rata-rata latihan per sesi (menit) |
+| `Training_Intensity` | Intensitas latihan (skala numerik) |
+| `Warmup_Time` | Durasi pemanasan sebelum latihan (menit) |
+| `Sleep_Hours` | Rata-rata jam tidur per malam |
+| `Recovery_Time` | Waktu pemulihan antar sesi latihan (jam) |
+| `Stress_Level` | Tingkat stres psikologis (skala numerik) |
+| `Muscle_Asymmetry` | Tingkat ketidakseimbangan otot |
+| `Flexibility_Score` | Skor fleksibilitas tubuh |
+| `Injury_History` | Riwayat cedera sebelumnya (0 = Tidak, 1 = Ya) |
+
+---
+
+### 🔹 Engineered Features (Computed During Preprocessing)
+Fitur-fitur berikut **tidak ada secara langsung di dataset**, tetapi dihitung selama preprocessing untuk menangkap hubungan fisiologis yang lebih relevan dengan risiko cedera:
+
+| Feature | Formula | Interpretation |
+|------|--------|---------------|
+| `Training_Load` | `Training_Frequency × Training_Duration × Training_Intensity` | Representasi total beban latihan atlet |
+| `Recovery_Quality` | `Sleep_Hours × Recovery_Time` | Indikator kualitas pemulihan atlet |
+| `Physical_Imbalance` | `Muscle_Asymmetry / (Flexibility_Score + 1)` | Risiko biomekanik akibat ketidakseimbangan dan fleksibilitas rendah |
+
+---
+
+### 🎯 Target Variable
+Model memprediksi variabel target berikut:
+
+| Target | Description |
+|------|------------|
+| `Injury_Risk` | Risiko cedera atlet (0 = Low Risk, 1 = High Risk) |
 
 ---
 
