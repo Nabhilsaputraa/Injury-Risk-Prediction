@@ -716,7 +716,7 @@ if st.button("🔍 ANALYZE INJURY RISK"):
     with st.spinner("Analyzing athlete injury risk..."):
         try:
             response = requests.post(
-                "http://localhost:8000/predict",
+                PREDICT_URL,
                 json=payload
             )
             res = response.json()
