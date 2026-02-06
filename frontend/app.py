@@ -3,6 +3,9 @@ import requests
 import os
 import pandas as pd
 
+API_KEY = st.secrets["RAILWAY_TOKEN"]
+PREDICT_URL = PREDICT_URL = "https://injury-risk-prediction-production.up.railway.app/predict"
+
 #! PAGE CONFIG
 st.set_page_config(
     page_title="Injury Risk Prediction - Inspant",
