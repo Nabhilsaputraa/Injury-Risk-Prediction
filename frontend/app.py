@@ -4,7 +4,7 @@ import os
 import pandas as pd
 
 API_KEY = "eaebdc64-30f3-4f74-8d16-67d69644cf2b"
-PREDICT_URL = PREDICT_URL = "https://injury-risk-prediction-production.up.railway.app/predict"
+PREDICT_URL = "https://injury-risk-prediction-production.up.railway.app/predict"
 
 #! PAGE CONFIG
 st.set_page_config(
